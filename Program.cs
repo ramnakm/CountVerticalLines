@@ -33,26 +33,17 @@ internal class Program
 
                     if (isBlack(pxColor))
                     {
-                        linePixels++;                        
+                        isBlackline[i] = true;
+                        break; // Found black pixel in this column, move to next column
                     }
                     
                 }
-
-                if (height - linePixels <= threshold)
-                {
-                    isBlackline[i] = true;
-                }
-
-
-                //if (linePixels > 10 && !isPreviousBlack)
-                //{
-                //    lineCount++;
-                //}
             }
 
             int lineCount = 0;
             bool prevline = false;
 
+            // Count vertical lines by checking transitions in blackline[]
             for (int i = 0; i < width; i++)
             {
                 if (isBlackline[i])
@@ -76,7 +67,7 @@ internal class Program
 
     public static bool isBlack(Color pxColor)
     {
-        if(pxColor.R < 20 && pxColor.G < 20 && pxColor.B < 20)
+        if(pxColor.R < 50 && pxColor.G < 50 && pxColor.B < 50)
         {
             return true;
         }
