@@ -1,32 +1,35 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using System;
 using System.Drawing;
-//using System.Drawing.Common;
 
 internal class Program
 {
     private static void Main(string[] args)
     {
-        string inpFolder = @"..\..\..\Images";
-        string absPath = Path.GetFullPath(inpFolder);
-        
-
-        foreach (string filePath in Directory.GetFiles(absPath))
+        if (args.Length != 1)
         {
-            Bitmap bmp = new Bitmap(filePath);
+            Console.WriteLine("Error: Please provide valid and only 1 input file path");
+            return;
+        }
+                
+        try
+        {
+            string imagePath = args[0];
+
+            if (!File.Exists(imagePath)) 
+            {
+                Console.WriteLine("Error: File does not exist");
+                return;
+            }
+
+            Bitmap bmp = new Bitmap(imagePath);
 
             int width = bmp.Width;
-            int height = bmp.Height;
-            int threshold = 0;
-            
+            int height = bmp.Height;            
             bool[] isBlackline = new bool[width];
 
             for (int i = 0; i < width; i++)
-            {
-                int linePixels = 0;
-                bool isPreviousBlack = false;
-                
-
+            {     
                 for (int j = 0; j < height; j++)
                 {
                     Color pxColor = bmp.GetPixel(i, j);
@@ -60,7 +63,11 @@ internal class Program
                 }
             }
 
-                Console.WriteLine("No of Vertical Lines in " + Path.GetFileName(filePath) + " : " + lineCount);
+            Console.WriteLine("No of Vertical Lines in " + Path.GetFileName(imagePath) + " : " + lineCount);
+        }
+        catch (Exception ex)
+        { 
+            Console.WriteLine(ex.ToString());   
         }
         Console.ReadKey();
     }
