@@ -7,7 +7,7 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        string inpFolder = @"..\Images";
+        string inpFolder = @"..\..\..\Images";
         string absPath = Path.GetFullPath(inpFolder);
         
 
