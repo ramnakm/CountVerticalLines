@@ -1,13 +1,27 @@
-Vertical Line Counter Console App
+Count Vertical Lines - Console App
 
 USAGE:
 Run the application from the command line, passing the absolute path to the image file.
 
 Example:
-> VerticalLineCounter.exe "C:\TMMC_interview_assignment\img_1.jpg"
+> CountVerticalLines.exe "C:\TMMC_interview_assignment\img_1.jpg"
 
-OUTPUT:
-Prints the number of vertical black lines found in the image.
+Description:
+  This application counts the number of vertical black lines in a black-and-white image
+  created using MS Paint. A vertical line is assumed to be a column that contains at
+  least one black pixel, and connected black columns are counted as a single line.
+
+Requirements:
+  - Input must be a .jpg image created using MS Paint.
+  - Background is white. Lines are black, drawn using bucket tool.
+  - Lines are continuous (exist on top and bottom of image).
+
+Build:
+  Open the solution in Visual Studio or build via CLI:
+    > dotnet build
+
+Run:
+  > CountVerticalLines.exe "C:\TMMC_interview_assignment\img_1.jpg"
 
 NOTES:
 - The image must be a black-and-white image created with MS Paint.

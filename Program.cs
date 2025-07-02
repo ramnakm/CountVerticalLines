@@ -1,11 +1,13 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using System;
+using System.ComponentModel.DataAnnotations;
 using System.Drawing;
 
 internal class Program
 {
     private static void Main(string[] args)
     {
+        // Validate number of arguments
         if (args.Length != 1)
         {
             Console.WriteLine("Error: Please provide valid and only 1 input file path");
@@ -16,18 +18,22 @@ internal class Program
         {
             string imagePath = args[0];
 
+            // Validate file existence
             if (!File.Exists(imagePath)) 
             {
                 Console.WriteLine("Error: File does not exist");
                 return;
             }
 
+            // Load image
             Bitmap bmp = new Bitmap(imagePath);
-
             int width = bmp.Width;
-            int height = bmp.Height;            
+            int height = bmp.Height;
+
+            // Store which columns have black pixels
             bool[] isBlackline = new bool[width];
 
+            // Scan for black pixels in each column
             for (int i = 0; i < width; i++)
             {     
                 for (int j = 0; j < height; j++)
@@ -46,7 +52,7 @@ internal class Program
             int lineCount = 0;
             bool prevline = false;
 
-            // Count vertical lines by checking transitions in blackline[]
+            // Count transitions from white to black columns
             for (int i = 0; i < width; i++)
             {
                 if (isBlackline[i])
@@ -69,9 +75,13 @@ internal class Program
         { 
             Console.WriteLine(ex.ToString());   
         }
-        Console.ReadKey();
     }
 
+    /// <summary>
+    /// Checks if a pixel is black
+    /// </summary>
+    /// <param name="pxColor"></param>
+    /// <returns></returns>
     public static bool isBlack(Color pxColor)
     {
         if(pxColor.R < 50 && pxColor.G < 50 && pxColor.B < 50)
