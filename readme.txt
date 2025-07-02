@@ -1,0 +1,1 @@
+This project consists of the source code for counting vertical black lines for each image in the folder.
