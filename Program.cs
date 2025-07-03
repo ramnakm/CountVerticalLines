@@ -7,16 +7,41 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        // Validate number of arguments
-        if (args.Length != 1)
+        string imagePath;
+
+#if DEBUG
+        // Allow developer input in debug mode if no args provided
+        if (args.Length == 0)
         {
-            Console.WriteLine("Error: Please provide valid and only 1 input file path");
+            Console.WriteLine("[DEBUG] No command-line argument provided.");
+            Console.Write("Enter full image path: ");
+            //imagePath = args[0];
+            imagePath = Console.ReadLine().Trim();
+        }
+        else if (args.Length == 1)
+        {
+            imagePath = args[0];
+        }
+        else
+        {
+            Console.WriteLine("Error: Please provide exactly one image file path.");
             return;
         }
-                
+#else
+
+        // Release mode: strictly require 1 argument
+            if (args.Length != 1)
+            {
+                Console.WriteLine("Error: Please provide exactly one image file path.");
+                return;
+            }
+
+            imagePath = args[0];
+#endif
+
         try
         {
-            string imagePath = args[0];
+            //imagePath = args[0];
 
             // Validate file existence
             if (!File.Exists(imagePath)) 
