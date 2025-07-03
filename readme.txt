@@ -5,7 +5,11 @@ Run the application from the command line, passing the absolute path to the imag
 
 Example:
 
-Open a terminal (e.g., PowerShell or Command Prompt).
+Build:
+  Open the solution in Visual Studio or build via CLI:
+    > dotnet build
+
+Open a terminal (e.g., Command Prompt).
 Navigate to the output directory:
    
    Executable path after building in Release mode:
@@ -29,6 +33,15 @@ Requirements:
 Build:
   Open the solution in Visual Studio or build via CLI:
     > dotnet build
+
+Open a terminal (e.g., Command Prompt).
+Navigate to the output directory:
+   
+   Executable path after building in Release mode:
+   > CountVerticalLines\bin\Release\net8.0\CountVerticalLines.exe
+
+   Or for Debug mode:
+   > CountVerticalLines\bin\Debug\net8.0\CountVerticalLines.exe
 
 Run:
   > CountVerticalLines.exe "C:\TMMC_interview_assignment\img_1.jpg"
